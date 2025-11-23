@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Edit Investment</h2>
+
+<form method="post">
+    <p>Symbol: {{ investment.symbol }}</p>
+
+    <label>Quantity:</label>
+    <input type="number" step="any" name="quantity" value="{{ investment.quantity }}">
+
+    <label>Buy Price:</label>
+    <input type="number" step="any" name="buy_price" value="{{ investment.buy_price }}">
+
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

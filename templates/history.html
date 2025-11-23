@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Price History: {{ symbol }}</h2>
+
+<canvas id="historyChart" height="80"></canvas>
+
+<script>
+  const histCtx = document.getElementById('historyChart').getContext('2d');
+
+  const historyChart = new Chart(histCtx, {
+      type: 'line',
+      data: {
+          labels: {{ dates|tojson }},
+          datasets: [{
+              label: 'Close Price',
+              data: {{ prices|tojson }},
+              fill: false,
+              tension: 0.1,
+              borderWidth: 2
+          }]
+      },
+      options: {
+          scales: {
+              x: { display: true, title: { display: true, text: 'Date' } },
+              y: { display: true, title: { display: true, text: 'Price' } }
+          }
+      }
+  });
+</script>
+{% endblock %}

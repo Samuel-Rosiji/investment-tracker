@@ -1,0 +1,172 @@
+/* GLOBAL ----------------------------------------------------- */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f6f8;
+    color: #333;
+}
+
+/* NAV -------------------------------------------------------- */
+
+nav {
+    background: #1a73e8;
+    padding: 12px 40px;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    padding-bottom: 2px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* MAIN CONTAINER -------------------------------------------- */
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+/* HEADINGS / SUMMARY ---------------------------------------- */
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.summary-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 20px;
+    font-size: 0.98rem;
+}
+
+.summary-row p {
+    margin: 0;
+}
+
+/* TABLE ----------------------------------------------------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+thead {
+    background: #f0f2f5;
+}
+
+th, td {
+    padding: 10px 8px;
+    border-bottom: 1px solid #e3e6ea;
+    text-align: center;
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background: #fafbfc;
+}
+
+/* ACTION LINKS --------------------------------------------- */
+
+td a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+/* FLASH MESSAGES ------------------------------------------- */
+
+.success {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px 12px;
+    border-left: 4px solid #28a745;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.danger {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px 12px;
+    border-left: 4px solid #dc3545;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+/* FORMS ----------------------------------------------------- */
+
+form label {
+    display: block;
+    font-weight: 500;
+    margin-top: 12px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border-radius: 6px;
+    border: 1px solid #cbd2e1;
+    font-size: 0.95rem;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #1a73e8;
+}
+
+button {
+    margin-top: 18px;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #1a73e8;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+button:hover {
+    background: #155fc0;
+}
+
+/* "No investments" row ------------------------------------- */
+
+.no-data {
+    text-align: center;
+    padding: 14px 0;
+    color: #666;
+}

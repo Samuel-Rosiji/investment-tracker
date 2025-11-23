@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Portfolio Dashboard</h2>
+
+<div class="summary-row">
+    <p><b>Total Value:</b> ${{ total_value }}</p>
+    <p><b>Total Cost:</b> ${{ total_cost }}</p>
+    <p><b>Profit / Loss:</b> ${{ profit_loss }}</p>
+</div>
+
+<div style="max-width: 400px; margin: 0 auto 30px auto;">
+    <h3 style="text-align:center;">Asset Allocation</h3>
+    <canvas id="allocationChart"></canvas>
+</div>
+
+<p>
+    <a href="{{ url_for('export_csv') }}">Download CSV</a>
+</p>
+
+<form method="post" action="{{ url_for('import_csv') }}" enctype="multipart/form-data">
+    <label>Import CSV:</label>
+    <input type="file" name="file" accept=".csv">
+    <button type="submit">Upload</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Buy Price</th>
+            <th>Live Price</th>
+            <th>Value</th>
+            <th>P/L</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if investments %}
+            {% for inv in investments %}
+            <tr>
+                <td>
+                    <a href="{{ url_for('history', symbol=inv.symbol) }}">
+                        {{ inv.symbol }}
+                    </a>
+                </td>
+                <td>{{ inv.category }}</td>
+                <td>{{ inv.quantity }}</td>
+                <td>{{ inv.buy_price }}</td>
+                <td>{{ inv.current_price }}</td>
+                <td>{{ inv.value }}</td>
+                <td>{{ inv.profit_loss }}</td>
+                <td>
+                    <a href="{{ url_for('edit_investment', id=inv.id) }}">Edit</a>
+                    <form method="post"
+                          action="{{ url_for('delete_investment', id=inv.id) }}"
+                          style="display:inline;">
+                        <button type="submit"
+                                style="width:auto;padding:2px 6px;margin-left:4px;">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td class="no-data" colspan="8">
+                    No investments yet. Add one to get started!
+                </td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<script>
+    const allocCtx = document.getElementById('allocationChart').getContext('2d');
+
+    const allocationChart = new Chart(allocCtx, {
+        type: 'pie',
+        data: {
+            labels: {{ category_labels|tojson }},
+            datasets: [{
+                data: {{ category_values|tojson }},
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+</script>
+{% endblock %}
